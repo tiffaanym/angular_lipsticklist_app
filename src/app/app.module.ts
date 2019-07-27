@@ -19,9 +19,11 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
     { path: 'auth/signup', component: SignupComponent },
     { path: 'auth/signin', component: SigninComponent },
-    { path: 'lipstick-list', component: LipstickListComponent},
-    { path: 'lipstick-list/new', component: LipstickFormComponent},
-    { path: 'lipstick-list/view/:id', component: SingleLipstickComponent},
+    { path: 'lipstick-list', canActivate: [AuthGuardService], component: LipstickListComponent},
+    { path: 'lipstick-list/new', canActivate: [AuthGuardService], component: LipstickFormComponent},
+    { path: 'lipstick-list/view/:id', canActivate: [AuthGuardService], component: SingleLipstickComponent},
+    { path: '', redirectTo: 'lipstick-list', pathMatch: 'full'},
+    { path: '**', redirectTo: 'lipstick-list'}
 ];
 
 @NgModule({
