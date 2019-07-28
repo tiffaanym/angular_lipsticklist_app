@@ -12,6 +12,9 @@ import {Lipstick} from '../../models/lipstick.model';
 export class LipstickFormComponent implements OnInit {
 
     lipstickForm: FormGroup;
+    fileIsUploading = false;
+    fileUrl: string;
+    fileUploaded = false;
 
     constructor(private formBuilder: FormBuilder, private lipstickService: LipstickService, private router: Router) {
     }
@@ -32,8 +35,26 @@ export class LipstickFormComponent implements OnInit {
         const name = this.lipstickForm.get('name').value;
         const color = this.lipstickForm.get('color').value;
         const newLipstick = new Lipstick(name, color);
+        if (this.fileUrl && this.fileUrl !== '') {
+            newLipstick.photo = this.fileUrl;
+        }
         this.lipstickService.createNewLipstick(newLipstick);
         this.router.navigate(['/lipstick-list']);
+    }
+
+    onUploadFile(file: File) {
+        this.fileIsUploading = true;
+        this.lipstickService.uploadFile(file).then(
+            (url: string) => {
+                this.fileUrl = url;
+                this.fileIsUploading = false;
+                this.fileUploaded = true;
+            }
+        );
+    }
+
+    detectFiles(event) {
+        this.onUploadFile(event.target.files[0]);
     }
 
 }

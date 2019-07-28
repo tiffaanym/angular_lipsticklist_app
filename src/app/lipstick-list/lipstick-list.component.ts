@@ -37,7 +37,7 @@ export class LipstickListComponent implements OnInit, OnDestroy {
     }
 
     onViewLipstick(id: number) {
-        this.router.navigate(['/lipstick-list','view',id]);
+        this.router.navigate(['/lipstick-list','view', id]);
     }
 
     ngOnDestroy() {

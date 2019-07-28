@@ -10,7 +10,13 @@
                 <label for="color">Couleur</label>
                 <input type="text" class="form-control" id="color" formControlName="color">
             </div>
-            <button class="btn btn-success" [disabled]="lipstickForm.invalid" type="submit">Enregistrer</button>
+            <div class="form-group">
+                <label>Ajouter une photo :</label>
+                <input type="file" (change)="detectFiles($event)" class="form-control" accept="image/*">
+                <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
+            </div>
+            <button class="btn btn-success" [disabled]="lipstickForm.invalid || fileIsUploading"
+                    type="submit">Enregistrer</button>
         </form>
     </div>
 </div>

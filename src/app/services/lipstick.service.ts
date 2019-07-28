@@ -34,7 +34,7 @@ export class LipstickService {
     getSingleLipstick(id: number) {
         return new Promise(
             (resolve, reject) => {
-                firebase.database().ref('/lipsticks' + id).once('value').then(
+                firebase.database().ref('/lipsticks/' + id).once('value').then(
                     (data) => {
                         resolve(data.val());
                     },
@@ -53,6 +53,18 @@ export class LipstickService {
     }
 
     removeLipstick(lipstick: Lipstick) {
+        if(lipstick.photo) {
+            const storageRef = firebase.storage().refFromURL(lipstick.photo);
+            storageRef.delete().then(
+                () => {
+                    console.log('Photo supprimée.');
+                }
+            ).catch(
+                (error) => {
+                    console.log('Fichier non trouvé' + error);
+                }
+            );
+        }
         const lipstickIndexToRemove = this.lipsticks.findIndex(
             (lipstickEl) => {
                 if (lipstickEl === lipstick) {
@@ -64,4 +76,27 @@ export class LipstickService {
         this.saveLipsticks();
         this.emitLipsticks();
     }
+
+    uploadFile(file: File) {
+        return new Promise(
+            (resolve, reject) => {
+                const almostUniqueFileName = Date.now().toString();
+                const upload = firebase.storage().ref()
+                    .child('images/' + almostUniqueFileName + file.name).put(file);
+                upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                    () => {
+                        console.log('Chargement…');
+                    },
+                    (error) => {
+                        console.log('Erreur de chargement ! : ' + error);
+                        reject();
+                    },
+                    () => {
+                        resolve(upload.snapshot.ref.getDownloadURL());
+                    }
+                );
+            }
+        );
+    }
+
 }
