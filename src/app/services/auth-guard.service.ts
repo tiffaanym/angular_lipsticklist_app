@@ -11,6 +11,7 @@ export class AuthGuardService implements CanActivate {
     constructor(private router: Router) {
     }
 
+    // Check if the user has access
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
         return new Promise(
             (resolve, reject) => {

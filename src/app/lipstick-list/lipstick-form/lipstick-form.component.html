@@ -1,1 +1,16 @@
-<p>lipstick-form works!</p>
+<div class="row justify-content-center">
+    <div class="row col-8">
+        <h2>Ajouter un nouveau rouge à lèvre à la collection</h2>
+        <form [formGroup]="lipstickForm" (ngSubmit)="onSaveLipstick()">
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label for="color">Couleur</label>
+                <input type="text" class="form-control" id="color" formControlName="color">
+            </div>
+            <button class="btn btn-success" [disabled]="lipstickForm.invalid" type="submit">Enregistrer</button>
+        </form>
+    </div>
+</div>

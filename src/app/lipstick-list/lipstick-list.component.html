@@ -1,1 +1,19 @@
-<p>lipstick-list works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Mes rouges à lèvres MAC</h2>
+        <div clas="list-group">
+            <button class="list-group-item"
+                    *ngFor="let lipstick of lipsticks; let i = index"
+            (click)="onViewLipstick(i)">
+                <h3 class="list-group-item-heading">
+                    {{ lipstick.name }}
+                    <button class="btn float-right" (click)="onDeleteLipstick(lipstick)">
+                        Supprimer
+                    </button>
+                </h3>
+                <p class="list-group-item-text">{{ lipstick.color }}</p>
+            </button>
+        </div>
+        <button class="btn btn-primary" (click)="onNewLipstick()">Ajouter un rouge à lèvre</button>
+    </div>
+</div>
