@@ -1,18 +1,28 @@
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="#">
+        <img src="../../assets/images/site-logo.svg" width="100px" class="d-inline-block align-middle" alt="logo">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active">
-                <a routerLink="lipstick-list">Lipstick</a>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="lipstick-list">Lipstick collection app</a>
             </li>
         </ul>
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active" *ngIf="!isAuth">
-                <a routerLink="auth/signup">Créer un compte</a>
+            <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
+                <a class="nav-link" routerLink="auth/signup">Créer un compte</a>
             </li>
-            <li routerLinkActive="active" *ngIf="!isAuth">
-                <a routerLink="auth/signin">Connexion</a>
+            <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
+                <a class="nav-link" routerLink="auth/signin">Connexion</a>
             </li>
-            <li *ngIf="isAuth"><a (click)="onSignOut()">Déconnexion</a></li>
+            <li *ngIf="isAuth"><a class="nav-link" (click)="onSignOut()">Déconnexion</a></li>
         </ul>
     </div>
+
 </nav>

@@ -1,0 +1,20 @@
+.list-group {
+  .list-group-item {
+    border: #999999 solid 1px;
+    border-radius: 0;
+    margin-bottom: 0.5rem;
+    .shade-info-description,
+    .shade-info-name {
+      text-transform: uppercase;
+    }
+    .btn {
+      font-size: 15px;
+      text-transform: uppercase;
+      padding: 0;
+      border: 0;
+      &.btn-details {
+        margin-right: 20px;
+      }
+    }
+  }
+}

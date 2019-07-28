@@ -1,7 +1,15 @@
-.active {
-  background: deeppink;
+.navbar {
+  flex-direction: row;
+  &.bg-dark {
+    height: 60px;
+    margin-bottom: 40px;
+    background-color: black !important;
+  }
+  .navbar-brand > img {
+    margin: 0 0px 2px 12px;
+  }
+  .nav-link {
+    text-transform: uppercase;
+  }
 }
 
-.navbar-nav{
-  flex-direction: row;
-}

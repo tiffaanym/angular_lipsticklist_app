@@ -1,19 +1,23 @@
 <div class="row">
     <div class="col-12">
-        <h2>Mes rouges à lèvres MAC</h2>
+        <h2>My collection</h2>
         <div class="list-group">
-            <button class="list-group-item"
-                    *ngFor="let lipstick of lipsticks; let i = index"
-            (click)="onViewLipstick(i)">
-                <h3 class="list-group-item-heading">
-                    {{ lipstick.name }}
-                    <button class="btn float-right" (click)="onDeleteLipstick(lipstick)">
-                        Supprimer
-                    </button>
-                </h3>
-                <p class="list-group-item-text">{{ lipstick.color }}</p>
-            </button>
+            <div class="list-group-item"
+                    *ngFor="let lipstick of lipsticks; let i = index">
+                <div class="row">
+                    <div class="col-8">
+                        <h3 class="shade-info-name">
+                            Shade : {{ lipstick.name }}
+                        </h3>
+                        <span class="shade-info-description">{{ lipstick.color }}</span>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-delete float-right" (click)="onDeleteLipstick(lipstick)">Delete</button>
+                        <button class="btn btn-details float-right" (click)="onViewLipstick(i)">Details</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-primary" (click)="onNewLipstick()">Ajouter un rouge à lèvre</button>
+        <button class="btn btn-primary" (click)="onNewLipstick()">Add a lipstick</button>
     </div>
 </div>
