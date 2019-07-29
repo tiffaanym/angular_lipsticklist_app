@@ -1,8 +1,15 @@
-<div class="row">
-    <div class="col-12">
-        <img style="max-width: 400px" *ngIf="lipstick.photo" [src]="lipstick.photo">
+<div class="row single-lipstick">
+    <div class="col-4">
+        <img class="shade-info-img" *ngIf="lipstick.photo" [src]="lipstick.photo">
+    </div>
+    <div class="col-8">
         <h2 class="shade-info-name">{{ lipstick.name }}</h2>
         <h3 class="shade-info-description">{{ lipstick.color }}</h3>
-        <button class="btn" (click)="onBack()">Retour</button>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <button class="btn float-right" (click)="onBack()">Retour</button>
     </div>
 </div>

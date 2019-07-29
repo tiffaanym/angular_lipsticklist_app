@@ -1,4 +1,22 @@
-.shade-info-description,
-.shade-info-name {
+.single-lipstick {
+
+  .shade-info-img {
+    max-width: 100%;
+  }
+
+  .shade-info-description,
+  .shade-info-name {
+    text-transform: uppercase;
+  }
+}
+.btn {
+  height: 30px;
+  padding: 0 15px;
+  font-size: 15px;
+  color: white;
+  width: auto;
+  border-radius: 0;
+  background-color: black;
   text-transform: uppercase;
+  cursor: pointer;
 }

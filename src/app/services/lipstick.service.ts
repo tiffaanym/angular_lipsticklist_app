@@ -12,29 +12,48 @@ export class LipstickService {
     lipsticks: Lipstick[] = [];
     lipstickSubject = new Subject<Lipstick[]>();
 
-    constructor() {
-    }
+
+
+
+    constructor() {}
+
 
     emitLipsticks() {
         this.lipstickSubject.next(this.lipsticks);
     }
 
     saveLipsticks() {
-        firebase.database().ref('/lipsticks').set(this.lipsticks);
+        var user = firebase.auth().currentUser;
+        var uid;
+        if (user != null) {
+            uid = user.uid;
+        }
 
+        firebase.database().ref('/lipsticks/'+uid).set(this.lipsticks);
     }
 
     getLipsticks() {
-        firebase.database().ref('/lipsticks').on('value', (data) => {
+        var user = firebase.auth().currentUser;
+        var uid;
+        if (user != null) {
+            uid = user.uid;
+        }
+
+        firebase.database().ref('/lipsticks/'+ uid).on('value', (data) => {
             this.lipsticks = data.val() ? data.val() : [];
             this.emitLipsticks();
         });
     }
 
     getSingleLipstick(id: number) {
+        var user = firebase.auth().currentUser;
+        var uid;
+        if (user != null) {
+            uid = user.uid;
+        }
         return new Promise(
             (resolve, reject) => {
-                firebase.database().ref('/lipsticks/' + id).once('value').then(
+                firebase.database().ref('/lipsticks/' + uid + '/' + id).once('value').then(
                     (data) => {
                         resolve(data.val());
                     },
